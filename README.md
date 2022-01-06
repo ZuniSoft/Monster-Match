@@ -4,6 +4,6 @@ Monster Match is match 3 or more game that was written entirely using Swift Play
 
 # Screenshots
 ### Game
-![image](./Screenshot.PNG)
+![image](./Image_431.PNG)
 ### Map
-![image](./Screenshot2.PNG)
+![image](./Image_433.PNG)

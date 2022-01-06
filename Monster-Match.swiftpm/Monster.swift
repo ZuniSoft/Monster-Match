@@ -23,16 +23,16 @@
 import SpriteKit
 
 enum MonsterType: Int, CustomStringConvertible {
-    case unknown = 0, pikachu, charmander, raticate, clefable, venonat, poliwhirl
+    case unknown = 0, aqua, berry, blue, green, orange, yellow
     
     var spriteName: String {
         let spriteNames = [
-            "Pikachu",
-            "Charmander",
-            "Raticate",
-            "Clefable",
-            "Venonat",
-            "Poliwhirl"]
+            "Aqua",
+            "Berry",
+            "Blue",
+            "Green",
+            "Orange",
+            "Yellow"]
         
         return spriteNames[rawValue - 1]
     }

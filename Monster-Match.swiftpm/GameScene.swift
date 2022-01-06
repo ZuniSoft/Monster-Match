@@ -59,8 +59,8 @@ class GameScene: SKScene {
         }
     }()
     
-    let TileWidth: CGFloat = 72.0
-    let TileHeight: CGFloat = 72.0
+    let TileWidth: CGFloat = 60.0
+    let TileHeight: CGFloat = 60.0
     let gameLayer = SKNode()
     let monstersLayer = SKNode()
     let tilesLayer = SKNode()
@@ -129,7 +129,7 @@ class GameScene: SKScene {
         targetDesc.horizontalAlignmentMode = .center
         targetDesc.position = CGPoint(
             x: tilesLayer.position.x - 200, 
-            y: tilesLayer.position.y + 405)
+            y: tilesLayer.position.y + 365)
         targetDesc.zPosition = 1
         addChild(targetDesc)
         
@@ -139,7 +139,7 @@ class GameScene: SKScene {
         targetLabel.horizontalAlignmentMode = .center
         targetLabel.position = CGPoint(
             x: tilesLayer.position.x - 200,
-            y: tilesLayer.position.y + 370)
+            y: tilesLayer.position.y + 330)
         targetLabel.zPosition = 1
         addChild(targetLabel)
         
@@ -149,7 +149,7 @@ class GameScene: SKScene {
         movesDesc.horizontalAlignmentMode = .center
         movesDesc.position = CGPoint(
             x: tilesLayer.position.x, 
-            y: tilesLayer.position.y + 405)
+            y: tilesLayer.position.y + 365)
         movesDesc.zPosition = 1
         addChild(movesDesc)
         
@@ -159,7 +159,7 @@ class GameScene: SKScene {
         movesLabel.horizontalAlignmentMode = .center
         movesLabel.position = CGPoint(
             x: tilesLayer.position.x,
-            y: tilesLayer.position.y + 370)
+            y: tilesLayer.position.y + 330)
         movesLabel.zPosition = 1
         addChild(movesLabel)
         
@@ -169,7 +169,7 @@ class GameScene: SKScene {
         scoreDesc.horizontalAlignmentMode = .center
         scoreDesc.position = CGPoint(
             x: tilesLayer.position.x + 200, 
-            y: tilesLayer.position.y + 405)
+            y: tilesLayer.position.y + 365)
         scoreDesc.zPosition = 1
         addChild(scoreDesc)
         
@@ -179,14 +179,14 @@ class GameScene: SKScene {
         scoreLabel.horizontalAlignmentMode = .center
         scoreLabel.position = CGPoint(
             x: tilesLayer.position.x + 200,
-            y: tilesLayer.position.y + 370)
+            y: tilesLayer.position.y + 330)
         scoreLabel.zPosition = 1
         addChild(scoreLabel)
         
         shuffleButton = SKSpriteNode(imageNamed: "Shuffle")
         shuffleButton.position = CGPoint(
             x: tilesLayer.position.x,
-            y: tilesLayer.position.y - 425)
+            y: tilesLayer.position.y - 390)
         self.addChild(shuffleButton)
         
         gameOverPanel = SKSpriteNode(imageNamed: "Game-Over")

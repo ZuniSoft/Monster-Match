@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "Yellow-Highlighted.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

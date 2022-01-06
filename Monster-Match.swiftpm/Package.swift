@@ -8,18 +8,18 @@ import PackageDescription
 import AppleProductTypes
 
 let package = Package(
-    name: "Monster Match",
+    name: "Monster Match Puzzle",
     platforms: [
         .iOS("15.2")
     ],
     products: [
         .iOSApplication(
-            name: "Monster Match",
+            name: "Monster Match Puzzle",
             targets: ["AppModule"],
-            bundleIdentifier: "com.zunisoft.ios.monstermatch",
+            bundleIdentifier: "com.zunisoft.ios.monstermatchpuzzle",
             teamIdentifier: "S63L4926ND",
             displayVersion: "1.0",
-            bundleVersion: "3",
+            bundleVersion: "4",
             iconAssetName: "AppIcon",
             accentColorAssetName: "AccentColor",
             supportedDeviceFamilies: [

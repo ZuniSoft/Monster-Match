@@ -20,6 +20,7 @@
 //  Copyright © 2022 ZuniSoft. All rights reserved.
 //
 
+import UIKit
 import Foundation
 
 extension Dictionary {
@@ -47,4 +48,3 @@ extension Dictionary {
         return dictionaryOK as? Dictionary<String, AnyObject>
     }
 }
-

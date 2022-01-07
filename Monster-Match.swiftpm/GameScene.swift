@@ -23,6 +23,10 @@
 import SpriteKit
 import AVFoundation
 
+let deviceIdiom = UIScreen.main.traitCollection.userInterfaceIdiom
+let scaleFactor = deviceIdiom == .phone ? 0.5 : 1
+let fontSize = deviceIdiom == .phone ? 24.0 : 32.0
+
 class GameScene: SKScene {
     var defaults = UserDefaults.standard
     var level: Level!
@@ -59,8 +63,8 @@ class GameScene: SKScene {
         }
     }()
     
-    let TileWidth: CGFloat = 60.0
-    let TileHeight: CGFloat = 60.0
+    let TileWidth: CGFloat = 60.0 * scaleFactor
+    let TileHeight: CGFloat = 60.0 * scaleFactor
     let gameLayer = SKNode()
     let monstersLayer = SKNode()
     let tilesLayer = SKNode()
@@ -126,73 +130,85 @@ class GameScene: SKScene {
         targetDesc = SKLabelNode(fontNamed: "GillSans-Bold")
         targetDesc.text = "Target:"
         targetDesc.fontColor = UIColor.purple
+        targetDesc.fontSize = fontSize
         targetDesc.horizontalAlignmentMode = .center
         targetDesc.position = CGPoint(
-            x: tilesLayer.position.x - 200, 
-            y: tilesLayer.position.y + 365)
+            x: tilesLayer.position.x - 200 * scaleFactor, 
+            y: tilesLayer.position.y + 365 * scaleFactor)
         targetDesc.zPosition = 1
         addChild(targetDesc)
         
         targetLabel = SKLabelNode(fontNamed: "GillSans-Bold")
         targetLabel.text = "999999"
         targetLabel.fontColor = UIColor.lightGray
+        targetLabel.fontSize = fontSize
         targetLabel.horizontalAlignmentMode = .center
         targetLabel.position = CGPoint(
-            x: tilesLayer.position.x - 200,
-            y: tilesLayer.position.y + 330)
+            x: tilesLayer.position.x - 200 * scaleFactor,
+            y: tilesLayer.position.y + 315 * scaleFactor)
         targetLabel.zPosition = 1
         addChild(targetLabel)
         
         movesDesc = SKLabelNode(fontNamed: "GillSans-Bold")
         movesDesc.text = "Moves:"
         movesDesc.fontColor = UIColor.purple
+        movesDesc.fontSize = fontSize
         movesDesc.horizontalAlignmentMode = .center
         movesDesc.position = CGPoint(
-            x: tilesLayer.position.x, 
-            y: tilesLayer.position.y + 365)
+            x: tilesLayer.position.x * scaleFactor, 
+            y: tilesLayer.position.y + 365 * scaleFactor)
         movesDesc.zPosition = 1
         addChild(movesDesc)
         
         movesLabel = SKLabelNode(fontNamed: "GillSans-Bold")
         movesLabel.text = "999999"
         movesLabel.fontColor = UIColor.lightGray
+        movesLabel.fontSize = fontSize
         movesLabel.horizontalAlignmentMode = .center
         movesLabel.position = CGPoint(
-            x: tilesLayer.position.x,
-            y: tilesLayer.position.y + 330)
+            x: tilesLayer.position.x * scaleFactor,
+            y: tilesLayer.position.y + 315 * scaleFactor)
         movesLabel.zPosition = 1
         addChild(movesLabel)
         
         scoreDesc = SKLabelNode(fontNamed: "GillSans-Bold")
         scoreDesc.text = "Score:"
         scoreDesc.fontColor = UIColor.purple
+        scoreDesc.fontSize = fontSize
         scoreDesc.horizontalAlignmentMode = .center
         scoreDesc.position = CGPoint(
-            x: tilesLayer.position.x + 200, 
-            y: tilesLayer.position.y + 365)
+            x: tilesLayer.position.x + 200 * scaleFactor, 
+            y: tilesLayer.position.y + 365 * scaleFactor)
         scoreDesc.zPosition = 1
         addChild(scoreDesc)
         
         scoreLabel = SKLabelNode(fontNamed: "GillSans-Bold")
         scoreLabel.text = "999999"
         scoreLabel.fontColor = UIColor.lightGray
+        scoreLabel.fontSize = fontSize
         scoreLabel.horizontalAlignmentMode = .center
         scoreLabel.position = CGPoint(
-            x: tilesLayer.position.x + 200,
-            y: tilesLayer.position.y + 330)
+            x: tilesLayer.position.x + 200 * scaleFactor,
+            y: tilesLayer.position.y + 315 * scaleFactor)
         scoreLabel.zPosition = 1
         addChild(scoreLabel)
         
         shuffleButton = SKSpriteNode(imageNamed: "Shuffle")
         shuffleButton.position = CGPoint(
-            x: tilesLayer.position.x,
-            y: tilesLayer.position.y - 390)
+            x: tilesLayer.position.x * scaleFactor,
+            y: tilesLayer.position.y - 390 * scaleFactor)
+        shuffleButton.xScale = scaleFactor
+        shuffleButton.yScale = scaleFactor
         self.addChild(shuffleButton)
         
         gameOverPanel = SKSpriteNode(imageNamed: "Game-Over")
+        gameOverPanel.xScale = scaleFactor
+        gameOverPanel.yScale = scaleFactor
         addChild(gameOverPanel)
         
         levelCompletePanel = SKSpriteNode(imageNamed: "Level-Complete")
+        levelCompletePanel.xScale = scaleFactor
+        levelCompletePanel.yScale = scaleFactor
         addChild(levelCompletePanel)
     }
     

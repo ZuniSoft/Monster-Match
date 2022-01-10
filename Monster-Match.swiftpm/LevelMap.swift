@@ -97,7 +97,7 @@ class LevelMap {
             let level = SKLabelNode(fontNamed: "GillSans-Bold")
             level.name = "level"
             level.text = String(index + 1)
-            level.fontSize = 18
+            level.fontSize = mapFontSize
             level.fontColor = UIColor.black
             level.horizontalAlignmentMode = .center
             level.position = CGPoint(x: value, y: levelMarkerY[index])

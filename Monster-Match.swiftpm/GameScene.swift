@@ -27,7 +27,7 @@ import AVFoundation
 let deviceIdiom = UIScreen.main.traitCollection.userInterfaceIdiom
 let scaleFactor = deviceIdiom == .phone ? 0.52 : 1.0
 let fontSize = deviceIdiom == .phone ? 24.0 : 32.0
-let mapFontSize = deviceIdiom == .phone ? 12.0 : 18.0
+let mapFontSize = deviceIdiom == .phone ? 8.0 : 10.0
 
 class GameScene: SKScene {
     var defaults = UserDefaults.standard

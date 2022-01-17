@@ -83,7 +83,8 @@ class LevelMap {
         var marker: SKSpriteNode!
         
         for (index, value) in levelMarkerX.enumerated() {
-            if index < self.currLevel {
+            print(index % self.currLevel)
+            if index < self.currLevel - (index + 1) {
                 marker = SKSpriteNode(imageNamed: "Level-Complete-Marker")
             } else {
                 marker = SKSpriteNode(imageNamed: "Level-Open-Marker")
@@ -96,7 +97,7 @@ class LevelMap {
             
             let level = SKLabelNode(fontNamed: "GillSans-Bold")
             level.name = "level"
-            level.text = String(index + 1)
+            level.text = String(format: "%ld-%ld", index + 1, index + 2)
             level.fontSize = mapFontSize
             level.fontColor = UIColor.black
             level.horizontalAlignmentMode = .center

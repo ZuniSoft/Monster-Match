@@ -339,6 +339,8 @@ class GameScene: SKScene {
         self.removeAllMonsterSprites()
         let newMonsters = level.shuffle()
         self.addSprites(for: newMonsters)
+        // skip Level to debug level map ////////////////////
+        //score = 1500
     }
     
     func handleMatches() {

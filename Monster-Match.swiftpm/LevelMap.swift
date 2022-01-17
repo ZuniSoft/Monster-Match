@@ -81,6 +81,8 @@ class LevelMap {
     
     func showMarkers() {
         var marker: SKSpriteNode!
+        var levelLower = 1
+        var levelUpper = 2
         
         for (index, value) in levelMarkerX.enumerated() {
             print(index % self.currLevel)
@@ -97,13 +99,16 @@ class LevelMap {
             
             let level = SKLabelNode(fontNamed: "GillSans-Bold")
             level.name = "level"
-            level.text = String(format: "%ld-%ld", index + 1, index + 2)
+            level.text = String(format: "%ld-%ld", levelLower, levelUpper)
             level.fontSize = mapFontSize
             level.fontColor = UIColor.black
             level.horizontalAlignmentMode = .center
             level.position = CGPoint(x: value, y: levelMarkerY[index])
             level.zPosition = 2
             self.scene.addChild(level)
+            
+            levelLower += 2
+            levelUpper += 2
         }
     }
     

@@ -738,4 +738,3 @@ class GameScene: SKScene {
         gameLayer.run(action, completion: completion)
     }
 }
-

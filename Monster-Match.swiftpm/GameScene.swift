@@ -85,8 +85,6 @@ class GameScene: SKScene {
     override init(size: CGSize) {
         super.init(size: size)
         
-        UserDefaults.standard.setValue(nil, forKey: "CurrentLevelNum")
-        
         currentLevelNum = defaults.object(forKey: "CurrentLevelNum") as? Int ?? 0
         
         self.backgroundColor = UIColor.black

@@ -25,7 +25,7 @@ import Foundation
 
 let NumColumns = 9
 let NumRows = 9
-let NumLevels = 9
+let NumLevels = 19
 
 class Level {
     
@@ -49,6 +49,7 @@ class Level {
                 }
             }
         }
+        
         targetScore = dictionary["targetScore"] as! Int
         maximumMoves = dictionary["moves"] as! Int
     }
@@ -238,15 +239,15 @@ class Level {
         for row in 0..<NumRows {
             for column in 0..<NumColumns {
                 if let monster = monsters[column, row] {
-                    // Is it possible to swap this windup with the one on the right?
+                    // Is it possible to swap this monster with the one on the right?
                     if column < NumColumns - 1 {
-                        // Have a windup in this spot? If there is no tile, there is no cookie.
+                        // Have a monster in this spot? If there is no tile, there is no monster.
                         if let other = monsters[column + 1, row] {
                             // Swap them
                             monsters[column, row] = other
                             monsters[column + 1, row] = monster
                             
-                            // Is either windup now part of a chain?
+                            // Is either monster now part of a chain?
                             if hasChainAt(column: column + 1, row: row) ||
                                 hasChainAt(column: column, row: row) {
                                 set.insert(Swap(monsterA: monster, monsterB: other))
@@ -263,7 +264,7 @@ class Level {
                             monsters[column, row] = other
                             monsters[column, row + 1] = monster
                             
-                            // Is either windup[ now part of a chain?
+                            // Is either monster now part of a chain?
                             if hasChainAt(column: column, row: row + 1) ||
                                 hasChainAt(column: column, row: row) {
                                 set.insert(Swap(monsterA: monster, monsterB: other))
@@ -277,7 +278,6 @@ class Level {
                 }
             }
         }
-        
         possibleSwaps = set
     }
     

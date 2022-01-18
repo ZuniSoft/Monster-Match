@@ -86,7 +86,6 @@ class GameScene: SKScene {
         super.init(size: size)
         
         currentLevelNum = defaults.object(forKey: "CurrentLevelNum") as? Int ?? 0
-        print(currentLevelNum)
         
         self.backgroundColor = UIColor.black
         
@@ -104,8 +103,8 @@ class GameScene: SKScene {
         let layerPosition = CGPoint(
             x: -TileWidth * CGFloat(NumColumns) / 2,
             y: -TileHeight * CGFloat(NumRows) / 2)
-        
         tilesLayer.position = layerPosition
+        
         levelMap = LevelMap(scene: self)
         
         gameLayer.addChild(tilesLayer)
@@ -301,8 +300,6 @@ class GameScene: SKScene {
         defaults.set(currentLevelNum, forKey: "CurrentLevelNum")
         
         levelCompletePanel.isHidden = true
-        //levelMap.showMap()
-        //levelMap.setScore(score: score)
         self.scene?.isUserInteractionEnabled = true
         
         showGameMap()
@@ -320,7 +317,7 @@ class GameScene: SKScene {
         shuffleButton.isHidden = true
         hideLabels()
         
-        self.animateGameOver() {
+        self.animateGameMap() {
             self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.hideGameMap))
             super.view?.addGestureRecognizer(self.tapGestureRecognizer)
         }
@@ -331,8 +328,6 @@ class GameScene: SKScene {
         tapGestureRecognizer = nil
         
         levelMap.removeMarkers()
-        
-        levelCompletePanel.isHidden = true
         backgroundPanel.isHidden = false
         showLabels()
         self.scene?.isUserInteractionEnabled = true
@@ -344,8 +339,6 @@ class GameScene: SKScene {
         self.removeAllMonsterSprites()
         let newMonsters = level.shuffle()
         self.addSprites(for: newMonsters)
-        // skip Level to debug level map ////////////////////
-        score = 1500
     }
     
     func handleMatches() {
@@ -732,6 +725,12 @@ class GameScene: SKScene {
     }
     
     func animateGameOver(_ completion: @escaping () -> ()) {
+        let action = SKAction.move(by: CGVector(dx: 0, dy: -size.height), duration: 0.3)
+        action.timingMode = .easeIn
+        gameLayer.run(action, completion: completion)
+    }
+    
+    func animateGameMap(_ completion: @escaping () -> ()) {
         let action = SKAction.move(by: CGVector(dx: 0, dy: -size.height), duration: 0.3)
         action.timingMode = .easeIn
         gameLayer.run(action, completion: completion)

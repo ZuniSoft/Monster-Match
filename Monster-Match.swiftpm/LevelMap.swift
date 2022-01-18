@@ -89,7 +89,6 @@ class LevelMap {
         var levelUpper = 2
         
         for (index, value) in levelMarkerX.enumerated() {
-            print(index % self.currLevel)
             if index < self.currLevel - (index + 1) {
                 marker = SKSpriteNode(imageNamed: "Level-Complete-Marker")
             } else {

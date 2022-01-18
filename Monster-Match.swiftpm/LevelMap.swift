@@ -25,14 +25,18 @@ import SpriteKit
 class LevelMap {
     var scene: SKScene!
     var gameMapPanel: SKSpriteNode!
+    var levelLabel: SKLabelNode!
+    var scoreLabel: SKLabelNode!
     var position: CGPoint!
     var levelMarkerX: [CGFloat]!
     var levelMarkerY: [CGFloat]!
     var currLevel: Int!
+    var score: Int!
     
     init(scene: SKScene) {
         self.scene = scene
         self.currLevel = 0
+        self.score = 0
         
         gameMapPanel = SKSpriteNode(imageNamed: "Game-Map")
         gameMapPanel.position = CGPoint(
@@ -114,13 +118,43 @@ class LevelMap {
     
     func removeMarkers() {
         for obj in self.scene.children {
-            if obj.name == "marker" || obj.name == "level" {
+            if obj.name == "marker" || obj.name == "level" || obj.name == "label" {
                 obj.removeFromParent()
             }
         }
     }
     
+    func showLabels() {
+        levelLabel = SKLabelNode(fontNamed: "GillSans-Bold")
+        levelLabel.name = "label"
+        levelLabel.text = String(format: "Level: %ld", currLevel)
+        levelLabel.fontColor = UIColor.white
+        levelLabel.fontSize = fontSize
+        levelLabel.horizontalAlignmentMode = .left
+        levelLabel.position = CGPoint(
+            x: self.scene.position.x - 285 * scaleFactor,
+            y: self.scene.position.y + 385 * scaleFactor)
+        levelLabel.zPosition = 1
+        self.scene.addChild(levelLabel)
+        
+        scoreLabel = SKLabelNode(fontNamed: "GillSans-Bold")
+        scoreLabel.name = "label"
+        scoreLabel.text = String(format: "Score: %ld", score)
+        scoreLabel.fontColor = UIColor.white
+        scoreLabel.fontSize = fontSize
+        scoreLabel.horizontalAlignmentMode = .right
+        scoreLabel.position = CGPoint(
+            x: self.scene.position.x + 285 * scaleFactor,
+            y: self.scene.position.y + 385 * scaleFactor)
+        scoreLabel.zPosition = 1
+        self.scene.addChild(scoreLabel)
+    }
+    
     func setGamelLevel(currLevel: Int) {
         self.currLevel = currLevel
+    }
+    
+    func setScore(score: Int) {
+        self.score = score
     }
 }

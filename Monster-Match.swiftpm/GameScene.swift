@@ -86,6 +86,7 @@ class GameScene: SKScene {
         super.init(size: size)
         
         currentLevelNum = defaults.object(forKey: "CurrentLevelNum") as? Int ?? 0
+        print(currentLevelNum)
         
         self.backgroundColor = UIColor.black
         
@@ -300,7 +301,8 @@ class GameScene: SKScene {
         defaults.set(currentLevelNum, forKey: "CurrentLevelNum")
         
         levelCompletePanel.isHidden = true
-        levelMap.showMap()
+        //levelMap.showMap()
+        //levelMap.setScore(score: score)
         self.scene?.isUserInteractionEnabled = true
         
         showGameMap()
@@ -310,6 +312,9 @@ class GameScene: SKScene {
         backgroundPanel.isHidden = true
         levelMap.showMap()
         levelMap.showMarkers()
+        levelMap.setGamelLevel(currLevel: currentLevelNum)
+        levelMap.setScore(score: score)
+        levelMap.showLabels()
         levelCompletePanel.isHidden = true
         self.isUserInteractionEnabled = true
         shuffleButton.isHidden = true
@@ -340,7 +345,7 @@ class GameScene: SKScene {
         let newMonsters = level.shuffle()
         self.addSprites(for: newMonsters)
         // skip Level to debug level map ////////////////////
-        //score = 1500
+        score = 1500
     }
     
     func handleMatches() {

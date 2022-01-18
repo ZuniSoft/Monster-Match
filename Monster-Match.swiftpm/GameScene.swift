@@ -65,8 +65,8 @@ class GameScene: SKScene {
         }
     }()
     
-    let TileWidth: CGFloat = 60.0 * scaleFactor
-    let TileHeight: CGFloat = 60.0 * scaleFactor
+    let TileWidth: CGFloat = 62.0 * scaleFactor
+    let TileHeight: CGFloat = 62.0 * scaleFactor
     let gameLayer = SKNode()
     let monstersLayer = SKNode()
     let tilesLayer = SKNode()
@@ -142,7 +142,7 @@ class GameScene: SKScene {
         
         targetLabel = SKLabelNode(fontNamed: "GillSans-Bold")
         targetLabel.text = "999999"
-        targetLabel.fontColor = UIColor.lightGray
+        targetLabel.fontColor = UIColor.darkGray
         targetLabel.fontSize = fontSize
         targetLabel.horizontalAlignmentMode = .center
         targetLabel.position = CGPoint(
@@ -164,7 +164,7 @@ class GameScene: SKScene {
         
         movesLabel = SKLabelNode(fontNamed: "GillSans-Bold")
         movesLabel.text = "999999"
-        movesLabel.fontColor = UIColor.lightGray
+        movesLabel.fontColor = UIColor.darkGray
         movesLabel.fontSize = fontSize
         movesLabel.horizontalAlignmentMode = .center
         movesLabel.position = CGPoint(
@@ -186,7 +186,7 @@ class GameScene: SKScene {
         
         scoreLabel = SKLabelNode(fontNamed: "GillSans-Bold")
         scoreLabel.text = "999999"
-        scoreLabel.fontColor = UIColor.lightGray
+        scoreLabel.fontColor = UIColor.darkGray
         scoreLabel.fontSize = fontSize
         scoreLabel.horizontalAlignmentMode = .center
         scoreLabel.position = CGPoint(

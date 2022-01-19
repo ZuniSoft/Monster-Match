@@ -132,7 +132,7 @@ class LevelMap {
         levelLabel.horizontalAlignmentMode = .left
         levelLabel.position = CGPoint(
             x: self.scene.position.x - 285 * scaleFactor,
-            y: self.scene.position.y + 385 * scaleFactor)
+            y: self.scene.position.y + 410 * scaleFactor)
         levelLabel.zPosition = 1
         self.scene.addChild(levelLabel)
         
@@ -144,7 +144,7 @@ class LevelMap {
         scoreLabel.horizontalAlignmentMode = .right
         scoreLabel.position = CGPoint(
             x: self.scene.position.x + 285 * scaleFactor,
-            y: self.scene.position.y + 385 * scaleFactor)
+            y: self.scene.position.y + 410 * scaleFactor)
         scoreLabel.zPosition = 1
         self.scene.addChild(scoreLabel)
     }

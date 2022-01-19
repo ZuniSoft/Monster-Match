@@ -28,6 +28,7 @@ let deviceIdiom = UIScreen.main.traitCollection.userInterfaceIdiom
 let scaleFactor = deviceIdiom == .phone ? 0.52 : 1.0
 let fontSize = deviceIdiom == .phone ? 24.0 : 32.0
 let mapFontSize = deviceIdiom == .phone ? 8.0 : 10.0
+let chainScoreFontSize = deviceIdiom == .phone ? 18.0 : 24.0
 
 class GameScene: SKScene {
     var defaults = UserDefaults.standard
@@ -351,8 +352,10 @@ class GameScene: SKScene {
         
         self.animateMatchedMonsters(for: chains) {
             for chain in chains {
+                self.animateKudos(score: chain.score)
                 self.score += chain.score
             }
+            
             self.updateLabels()
             
             let columns = self.level.fillHoles()
@@ -591,23 +594,49 @@ class GameScene: SKScene {
         }
     }
     
-    func animateScore(for chain: Chain) {
+    func animateChainScore(for chain: Chain) {
         let firstSprite = chain.firstMonster().sprite!
         let lastSprite = chain.lastMonster().sprite!
         let centerPosition = CGPoint(
             x: (firstSprite.position.x + lastSprite.position.x)/2,
             y: (firstSprite.position.y + lastSprite.position.y)/2 - 8)
         
-        let scoreLabel = SKLabelNode(fontNamed: "GillSans-BoldItalic")
-        scoreLabel.fontSize = 24
-        scoreLabel.text = String(format: "%ld", chain.score)
-        scoreLabel.position = centerPosition
-        scoreLabel.zPosition = 300
-        monstersLayer.addChild(scoreLabel)
+        let chainScoreLabel = SKLabelNode(fontNamed: "GillSans-BoldItalic")
+        chainScoreLabel.fontSize = chainScoreFontSize
+        chainScoreLabel.text = String(format: "%ld", chain.score)
+        chainScoreLabel.position = centerPosition
+        chainScoreLabel.zPosition = 300
+        monstersLayer.addChild(chainScoreLabel)
         
         let moveAction = SKAction.move(by: CGVector(dx: 0, dy: 3), duration: 0.7)
         moveAction.timingMode = .easeOut
-        scoreLabel.run(SKAction.sequence([moveAction, SKAction.removeFromParent()]))
+        chainScoreLabel.run(SKAction.sequence([moveAction, SKAction.removeFromParent()]))
+    }
+    
+    func animateKudos(score: Int) {
+        let centerPosition = CGPoint(x: TileWidth * CGFloat(NumColumns) / 2, 
+                                     y: TileWidth * CGFloat(NumRows) / 2)
+        var kudosLabel: SKSpriteNode!
+        
+        switch score {
+        case 120..<240:
+            kudosLabel = SKSpriteNode(imageNamed: "Scary")
+        case 240..<360:
+            kudosLabel = SKSpriteNode(imageNamed: "Frightful")
+        case 360..<5000:
+            kudosLabel = SKSpriteNode(imageNamed: "Horrifying")
+        default:
+            return
+        }
+        
+        kudosLabel.alpha = 0
+        kudosLabel.position = centerPosition
+        kudosLabel.zPosition = 350
+        monstersLayer.addChild(kudosLabel)
+        
+        let fadein = SKAction.fadeIn(withDuration: 2.5)
+        let remove = SKAction.removeFromParent()
+        kudosLabel.run(SKAction.sequence([fadein,remove]))
     }
     
     func animate(_ swap: Swap, completion: @escaping () -> ()) {
@@ -653,7 +682,7 @@ class GameScene: SKScene {
     
     func animateMatchedMonsters(for chains: Set<Chain>, completion: @escaping () -> ()) {
         for chain in chains {
-            animateScore(for: chain)
+            animateChainScore(for: chain)
             for monster in chain.monsters {
                 if let sprite = monster.sprite {
                     if sprite.action(forKey: "removing") == nil {
@@ -665,6 +694,7 @@ class GameScene: SKScene {
                 }
             }
         }
+        
         run(matchSound)
         run(SKAction.wait(forDuration: 0.3), completion: completion)
     }
@@ -672,10 +702,10 @@ class GameScene: SKScene {
     func animateFallingMonsters(columns: [[Monster]], completion: @escaping () -> ()) {
         var longestDuration: TimeInterval = 0
         for array in columns {
-            for (idx, windup) in array.enumerated() {
-                let newPosition = pointFor(column: windup.column, row: windup.row)
+            for (idx, monster) in array.enumerated() {
+                let newPosition = pointFor(column: monster.column, row: monster.row)
                 let delay = 0.05 + 0.15*TimeInterval(idx)
-                let sprite = windup.sprite!   // sprite always exists at this point
+                let sprite = monster.sprite!   // sprite always exists at this point
                 let duration = TimeInterval(((sprite.position.y - newPosition.y) / TileHeight) * 0.1)
                 longestDuration = max(longestDuration, duration + delay)
                 let moveAction = SKAction.move(to: newPosition, duration: duration)

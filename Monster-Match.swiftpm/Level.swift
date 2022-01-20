@@ -25,7 +25,7 @@ import Foundation
 
 let NumColumns = 9
 let NumRows = 9
-let NumLevels = 19
+let NumLevels = 39
 
 class Level {
     
@@ -83,7 +83,7 @@ class Level {
         repeat {
             set = createInitialMonsters()
             detectPossibleSwaps()
-            print("possible swaps: \(possibleSwaps)")
+            //print("possible swaps: \(possibleSwaps)")
         } while possibleSwaps.count == 0
         
         return set

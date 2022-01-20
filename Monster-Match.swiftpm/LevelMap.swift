@@ -30,13 +30,12 @@ class LevelMap {
     var position: CGPoint!
     var levelMarkerX: [CGFloat]!
     var levelMarkerY: [CGFloat]!
-    var currLevel: Int!
-    var score: Int!
+    var levelGroup: [Int]!
+    var currLevel: Int! = 0
+    var score: Int! = 0
     
     init(scene: SKScene) {
         self.scene = scene
-        self.currLevel = 0
-        self.score = 0
         
         gameMapPanel = SKSpriteNode(imageNamed: "Game-Map")
         gameMapPanel.position = CGPoint(
@@ -73,6 +72,7 @@ class LevelMap {
             posY + 350 * scaleFactor,
             posY + 400 * scaleFactor
         ]
+        levelGroup = [3, 5, 7, 9, 11, 13, 15, 17, 19, 21]
     }
     
     func showMap() {
@@ -85,11 +85,12 @@ class LevelMap {
     
     func showMarkers() {
         var marker: SKSpriteNode!
-        var levelLower = 1
-        var levelUpper = 2
+        var levelLower: Int = 1
+        var levelUpper: Int = 4
+        var levelGroupIdx: Int = 0
         
         for (index, value) in levelMarkerX.enumerated() {
-            if index < self.currLevel - (index + 1) {
+            if index < self.currLevel - (index + self.levelGroup[levelGroupIdx]) {
                 marker = SKSpriteNode(imageNamed: "Level-Complete-Marker")
             } else {
                 marker = SKSpriteNode(imageNamed: "Level-Open-Marker")
@@ -110,8 +111,10 @@ class LevelMap {
             level.zPosition = 2
             self.scene.addChild(level)
             
-            levelLower += 2
-            levelUpper += 2
+            levelGroupIdx += 1
+            levelLower += 4
+            levelUpper += 4
+            
         }
     }
     

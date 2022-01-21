@@ -84,16 +84,27 @@ class LevelMap {
     }
     
     func showMarkers() {
+        var location: SKSpriteNode!
         var marker: SKSpriteNode!
         var levelLower: Int = 1
         var levelUpper: Int = 4
         var levelGroupIdx: Int = 0
+        var locationSet: Bool = false
         
         for (index, value) in levelMarkerX.enumerated() {
             if index < self.currLevel - (index + self.levelGroup[levelGroupIdx]) {
                 marker = SKSpriteNode(imageNamed: "Level-Complete-Marker")
             } else {
                 marker = SKSpriteNode(imageNamed: "Level-Open-Marker")
+                if locationSet == false {
+                    locationSet = true
+                    location = SKSpriteNode(imageNamed: "Arrow")
+                    location.name = "marker"
+                    location.position = CGPoint(x: value, y: levelMarkerY[index] + 35)
+                    location.zPosition = 3
+                    location.size = CGSize(width: 24 * scaleFactor, height: 24 * scaleFactor)
+                    self.scene.addChild(location)
+                }
             }
             marker.name = "marker"
             marker.position = CGPoint(x: value, y: levelMarkerY[index])

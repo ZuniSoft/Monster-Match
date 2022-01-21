@@ -18,8 +18,8 @@ let package = Package(
             targets: ["AppModule"],
             bundleIdentifier: "com.zunisoft.ios.monstermatchpuzzle",
             teamIdentifier: "S63L4926ND",
-            displayVersion: "1.1",
-            bundleVersion: "5",
+            displayVersion: "1.2",
+            bundleVersion: "6",
             iconAssetName: "AppIcon",
             accentColorAssetName: "AccentColor",
             supportedDeviceFamilies: [

@@ -614,8 +614,6 @@ class GameScene: SKScene {
     }
     
     func animateKudos(score: Int) {
-        let centerPosition = CGPoint(x: TileWidth * CGFloat(NumColumns) / 2, 
-                                     y: TileWidth * CGFloat(NumRows) / 2)
         var kudosLabel: SKSpriteNode!
         
         switch score {
@@ -629,10 +627,11 @@ class GameScene: SKScene {
             return
         }
         
+        kudosLabel.scale(to: CGSize(width: 256 * scaleFactor, height: 40 * scaleFactor))
         kudosLabel.alpha = 0
-        kudosLabel.position = centerPosition
+        kudosLabel.position = gameLayer.position
         kudosLabel.zPosition = 350
-        monstersLayer.addChild(kudosLabel)
+        gameLayer.addChild(kudosLabel)
         
         let fadein = SKAction.fadeIn(withDuration: 2.5)
         let remove = SKAction.removeFromParent()

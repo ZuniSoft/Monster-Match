@@ -1,5 +1,5 @@
 //
-//  MyApp.swift
+//  SplashView.swift
 //  Monster Match
 //
 //  This program is free software; you can redistribute it and/or
@@ -16,18 +16,34 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 //
-//  Created by Keith Davis on 01/01/22.
+//  Created by Keith Davis on 02/09/22.
 //  Copyright © 2022 ZuniSoft. All rights reserved.
 //
 
 import SwiftUI
 
-@main
-struct MyApp: App {
-    var body: some Scene {
-        WindowGroup {
-            SplashView()
+struct SplashView: View {
+    
+    @State var isActive:Bool = false
+    
+    var body: some View {
+        VStack {
+            if self.isActive {
+                ContentView()
+            } else {
+                Image("Splash")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 350.0 * scaleFactor, height: 350.0 * scaleFactor)
+            }
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                withAnimation {
+                    self.isActive = true
+                }
+            }
         }
     }
+    
 }
-

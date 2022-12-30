@@ -627,7 +627,7 @@ class GameScene: SKScene {
             return
         }
         
-        kudosLabel.scale(to: CGSize(width: 256 * scaleFactor, height: 40 * scaleFactor))
+        kudosLabel.scale(to: CGSize(width: 512 * scaleFactor, height: 78 * scaleFactor))
         kudosLabel.alpha = 0
         kudosLabel.position = gameLayer.position
         kudosLabel.zPosition = 350
